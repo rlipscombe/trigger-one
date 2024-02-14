@@ -1,0 +1,22 @@
+name: "Trigger"
+
+on:
+  # Enable 'Run workflow' button.
+  workflow_dispatch:
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger 'trigger-target' build
+        run: |
+            repo_name=trigger-target
+            event_type="trigger-workflow"
+            curl -L \
+              -X POST \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: Bearer ${{ secrets.PAT }}" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              https://api.github.com/repos/$GITHUB_REPOSITORY_OWNER/$repo_name/dispatches \
+              -d "{\"event_type\": \"$event_type\"}"
