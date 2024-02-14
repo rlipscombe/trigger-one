@@ -11,6 +11,8 @@ jobs:
 
     steps:
       - name: Trigger 'trigger-target' build
+        with:
+          PAT: ${{ secrets.TRIGGER_PAT }}
         run: |
             repo_name=trigger-target
             event_type="trigger-workflow"
