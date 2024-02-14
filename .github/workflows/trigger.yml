@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Trigger 'trigger-target' build
-        with:
+        env:
           PAT: ${{ secrets.TRIGGER_PAT }}
         run: |
             repo_name=trigger-target
