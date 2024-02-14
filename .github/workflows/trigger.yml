@@ -13,7 +13,9 @@ jobs:
         run: |
             repo_name=trigger-target
             event_type="trigger-workflow"
-            curl -L \
+            curl -qs \
+              --fail-with-body \
+              -L \
               -X POST \
               -H "Accept: application/vnd.github+json" \
               -H "Authorization: Bearer ${{ secrets.PAT }}" \
